@@ -1,10 +1,6 @@
-# Flask Application Demonstration
+A simple real-world Flask application to demonstrate how to use blueprints and organize your application effectively. In this example, we will create an application that consists of a main module and two blueprints: one for user management and one for product management. This example includes routes for creating, reading, updating, and deleting users and products, simulating basic CRUD operations.
 
-In this example, we will create a real-world Flask application that consists of a main module and two blueprints: one for user management and one for product management. This example includes routes for creating, reading, updating, and deleting users and products, simulating basic CRUD operations.
-
-## Application Code
-
-The Flask application code is shown below:
+Here is the code for the Flask application:
 
 ```python
 from flask import Flask, request, jsonify, Blueprint
@@ -92,3 +88,32 @@ app.register_blueprint(products_bp, url_prefix='/products')
 
 if __name__ == '__main__':
     app.run(port=5000)
+```
+
+### Application Overview:
+
+- **Users Blueprint (`/users`)**:
+  - `GET /users/<int:user_id>`: Retrieve a specific user by ID.
+  - `POST /users/`: Create a new user and return the created user's data.
+  - `PUT /users/<int:user_id>`: Update an existing user's data by ID.
+  - `DELETE /users/<int:user_id>`: Delete a user by ID.
+
+- **Products Blueprint (`/products`)**:
+  - `GET /products/<int:product_id>`: Retrieve a specific product by ID.
+  - `POST /products/`: Create a new product and return the created product's data.
+  - `PUT /products/<int:product_id>`: Update an existing product's data by ID.
+  - `DELETE /products/<int:product_id>`: Delete a product by ID.
+
+### Key Features:
+
+- The application uses blueprints (`users_bp` and `products_bp`) to manage routes related to users and products, respectively. This helps keep the code organized and modular.
+- The application uses in-memory dictionaries (`users` and `products`) to store user and product data for demonstration purposes. In a real application, you would typically use a database instead.
+- Each blueprint is registered with a specific URL prefix (`/users` and `/products`), so routes for each blueprint are distinct and can be accessed separately.
+
+To run the application, save the code in a file (e.g., `app.py`) and execute it using Python:
+
+```shell
+python app.py
+```
+
+The application will start and listen on `http://localhost:5000/`. You can use a tool like [Postman](https://www.postman.com/) or [curl](https://curl.se/) to interact with the application, making requests to the user and product routes for CRUD operations.
